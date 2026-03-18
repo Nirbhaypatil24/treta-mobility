@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# Treta Mobility – Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-level modern frontend web application for **Treta Mobility LLP**, a mobility-tech startup focused on smart auto rickshaw infrastructure, transit advertising, and driver empowerment technologies.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **TypeScript** (Vite)
+- **TailwindCSS v4** for styling
+- **Framer Motion** for animations and scroll effects
+- **React Router v7** for routing
+- **Zustand** for state management (auth + UI)
+- **Axios** with JWT interceptors for API integration
+- **react-helmet-async** for SEO meta tags
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Fully responsive (mobile / tablet / desktop)
+- Role-based authentication (Driver / Marketing Partner / Admin)
+- JWT-ready auth architecture with Axios interceptors
+- Protected dashboard routes per role
+- SEO-optimized pages with per-page meta tags
+- Smooth scroll animations and micro-interactions
+- Clean scalable folder structure
 
-## Expanding the ESLint configuration
+## Pages
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Route | Page |
+|-------|------|
+| `/` | Home – Hero, features, stats, testimonials, blog highlights |
+| `/about` | About Us – Story, team, vision, timeline |
+| `/products` | Products – Smart Meter, Transit Ads, Analytics, Route Intelligence, APIs |
+| `/blog` | Blog – Search, category filter, pagination |
+| `/blog/:id` | Blog Detail |
+| `/contact` | Contact – Form, map placeholder, social links |
+| `/auth/login` | Login (role selector) |
+| `/auth/signup` | Signup |
+| `/auth/forgot-password` | Forgot Password |
+| `/dashboard/driver` | Driver Dashboard (protected) |
+| `/dashboard/marketing` | Marketing Partner Dashboard (protected) |
+| `/dashboard/admin` | Admin Dashboard (protected) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# Install dependencies
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Copy environment variables
+cp .env.example .env.local
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_API_BASE_URL` | Backend API base URL | `https://api.tretamobility.com/v1` |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Folder Structure
+
+```
+src/
+├── assets/          # Static assets
+├── components/      # Reusable UI components (Navbar, Footer, ProductCard, BlogCard, etc.)
+├── hooks/           # Custom React hooks
+├── layouts/         # Page layout wrappers (Main, Auth, Dashboard)
+├── pages/           # Page components
+│   ├── auth/        # Authentication pages
+│   └── dashboards/  # Role-based dashboard pages
+├── services/        # Axios service modules (auth, blog, contact, products)
+├── store/           # Zustand stores (authStore, uiStore)
+├── types/           # TypeScript interfaces
+└── utils/           # Constants, Framer Motion variants
 ```
